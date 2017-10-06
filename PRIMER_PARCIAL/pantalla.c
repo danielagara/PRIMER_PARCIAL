@@ -42,7 +42,7 @@ static int modificarPantallaPorIndice (EPantalla* arrayPantallas, int index)
     {
         if(val_getNombre(bNombrePantalla,"\nNOMBRE DE PANTALLA?\t","\nError:\n",3,51)==0)
         {
-            if(val_getNombre(bDireccionPantalla,"\nDIRECCION DE LA PANTALLA?\t","\nError:\n",3,51)==0)
+            if(val_getDescripcion(bDireccionPantalla,"\nDIRECCION DE LA PANTALLA?\t","\nError:\n",3,51)==0)
             {
 				if(val_getFloat(bPrecioPublicacionXdia,"\nPRECIO DE LA PUBLICACION POR DIA EN ESTA PANTALLA?\t","\nError:\n",3,51)==0)
 				{
@@ -83,7 +83,7 @@ int pant_cargarPantalla(EPantalla* arrayPantallas, int index, int len)
     {
             if(val_getNombre(bNombrePantalla,"\nNOMBRE DE PANTALLA?\t","\nError:\n",3,51)==0)
             {
-				if(val_getNombre(bDireccionPantalla,"\nDIRECCION DE LA PANTALLA?\t","\nError:\n",3,51)==0)
+				if(val_getDescripcion(bDireccionPantalla,"\nDIRECCION DE LA PANTALLA?\t","\nError:\n",3,51)==0)
 				{
 					if(val_getFloat(bPrecioPublicacionXdia,"\nPRECIO DE LA PUBLICACION POR DIA EN ESTA PANTALLA?\t","\nError:\n",3,51)==0)
 					{
@@ -255,7 +255,7 @@ int pant_pideId(EPantalla* arrayPantallas,int len)
     char bidPantalla[51];
     if(arrayPantallas != NULL && len > 0)
     {
-        printf("INGRESE SU ID:   \n");
+        printf("INGRESE EL ID DE LA PANTALLA:   \n");
         myFgets(bidPantalla,51,stdin);
         for(i=0; i<len ; i++)
         {

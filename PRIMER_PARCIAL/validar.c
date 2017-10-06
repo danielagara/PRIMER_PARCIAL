@@ -259,3 +259,53 @@ int val_validarUnsignedInt(char* buffer)
     }
     return retorno;
 }
+
+
+int val_validarDescripcion(char* buffer)
+{
+    int i=0;
+    int retorno = 0;
+    int flagArroba = 0;
+    while(buffer[i] != '\0')
+    {
+        if((buffer[i] < '0' || buffer[i] > '9') && buffer[i] != '.' && buffer[i] != '-'  && buffer[i] != '_'  && (buffer[i] < 'a' || buffer[i] > 'z') && (buffer[i] < 'A' || buffer[i] > 'Z'))
+        {
+            retorno = -1;
+            break;
+        }
+        i++;
+    }
+
+    return retorno;
+}
+
+
+int val_getDescripcion(char* destino, char* mensaje,char* mensajeError,int intentos,int limite)
+{
+    int retorno = -1;
+    char buffer[MAX_INPUT_BUFFER];
+
+    if(destino != NULL && limite > 0 && limite < MAX_INPUT_BUFFER)
+    {
+        printf(mensaje);
+        for( ;intentos>0;intentos--)
+        {
+
+            myFgets(buffer, limite ,stdin);
+
+            if(val_validarDescripcion(buffer) == -1)
+            {
+                printf(mensajeError);
+                continue;
+            }
+            else
+            {
+                strncpy(destino,buffer,limite);
+                retorno = 0;
+                break;
+            }
+        }
+
+    }
+    return retorno;
+}

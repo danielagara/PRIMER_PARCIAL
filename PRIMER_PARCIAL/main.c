@@ -1,13 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "pantalla.h"
+#include "contratacion.h"
+#include "compartida.h"
 #include "validar.h"
 
 #define TAM_PANTALLAS 100
+#define TAM_CONTRATACIONES 1000
 int main()
 {
     EPantalla arrayPantallas[TAM_PANTALLAS];
     pant_initPantalla(arrayPantallas,TAM_PANTALLAS);
+
+    EContratacion arrayContrataciones[TAM_CONTRATACIONES];
+    cont_initProductos(arrayContrataciones,TAM_CONTRATACIONES);
     char bufferInt[40];
 
     do
@@ -26,7 +32,16 @@ int main()
                 break;
             case 4:
                 pant_printPantalla(arrayPantallas,TAM_PANTALLAS);
-
+                cont_nuevaContratacion(arrayContrataciones,cont_buscarIndiceContratacionLibre(arrayContrataciones,TAM_CONTRATACIONES),TAM_CONTRATACIONES,pant_pideId(arrayPantallas,TAM_PANTALLAS));
+                break;
+            case 5:
+                listaPantallasCliente(arrayContrataciones, TAM_CONTRATACIONES,arrayPantallas, TAM_PANTALLAS);
+                cont_editarContratacion(arrayContrataciones,TAM_CONTRATACIONES);
+                break;
+            case 6:
+                listaPantallasCliente(arrayContrataciones, TAM_CONTRATACIONES,arrayPantallas, TAM_PANTALLAS);
+                cont_cancelarContratacion(arrayContrataciones,TAM_CONTRATACIONES);
+                break;
             case 9:
                 pant_printPantalla(arrayPantallas,TAM_PANTALLAS);
                 break;
